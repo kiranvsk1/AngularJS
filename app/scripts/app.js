@@ -1,9 +1,9 @@
  'use strict';
 
-  angular.module("confusionApp", []).controller('menuController', function() {
+  angular.module("confusionApp", []).controller('MenuController', ['$scope',function($scope) {
 
       //var tab = '';
-      this.tab = 1;
+      $scope.tab = 1;
 
       var dishes = [{
           name: 'Uthapizza',
@@ -38,23 +38,27 @@
           description: 'A delectable, semi-sweet New York Style Cheese Cake, with Graham cracker crust and spiced with Indian cardamoms',
           comment: ''
       }];
-      this.dishes = dishes;
+      $scope.dishes = dishes;
 
-      this.select = function(setTab) {
-          this.tab = setTab;
+      $scope.select = function(setTab) {
+          $scope.tab = setTab;
           if (setTab === 2) {
-              this.filtText = "appetizer";
+              $scope.filtText = "appetizer";
           } else if (setTab === 3) {
-              this.filtText = "mains";
+              $scope.filtText = "mains";
 
           } else if (setTab === 4) {
-              this.filtText = "dessert";
+              $scope.filtText = "dessert";
           } else {
-              this.filtText = "";
+              $scope.filtText = "";
           }
       };
 
-      this.isSelected = function(tabSelected) {
-          return (tabSelected === this.tab);
+      $scope.isSelected = function(tabSelected) {
+          return (tabSelected === $scope.tab);
       };
-  });
+      $scope.showDetails = false;
+      $scope.toggleDetails = function() {
+        $scope.showDetails = !$scope.showDetails;
+      };
+  }]);
